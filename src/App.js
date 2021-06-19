@@ -60,13 +60,16 @@ class App extends Component {
   };
 
   onImageClick = (e) => {
-    const src = e.target.src;
-    const alt = e.target.alt;
+    if (e.target !== e.currentTarget) {
+      const currentImage = this.state.images.find(
+        (image) => image.webformatURL === e.target.src
+      );
 
-    if (e.target === e.currentTarget) {
-      return;
+      const src = currentImage.largeImageURL;
+      const alt = currentImage.tags;
+
+      this.setState({ largeImage: { src, alt } });
     }
-    this.setState({ largeImage: { src, alt } });
   };
 
   onCloseModal = () => {
