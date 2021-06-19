@@ -63,6 +63,9 @@ class App extends Component {
     const src = e.target.src;
     const alt = e.target.alt;
 
+    if (e.target === e.currentTarget) {
+      return;
+    }
     this.setState({ largeImage: { src, alt } });
   };
 
